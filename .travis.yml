@@ -14,6 +14,8 @@ cache:
     - '~/docker'
 
 install:
+  - docker images
   - if [[ -e ~/docker/image.tar ]]; then echo "Using docker cache"; docker load -i ~/docker/image.tar; fi
+  - docker images
   - docker build -t my-image .
   - mkdir -p ~/docker; docker save my-image > ~/docker/image.tar
